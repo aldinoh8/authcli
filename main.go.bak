@@ -1,0 +1,18 @@
+package main
+
+import (
+	"github.com/aldinoh8/authcli/cli"
+	"github.com/aldinoh8/authcli/config"
+	"github.com/aldinoh8/authcli/handler"
+)
+
+func main() {
+	// database init
+	db := config.InitDatabase("mysql:mysql@tcp(localhost:3306)/ftgo_p1_bcypt_demo")
+
+	// cli init
+	userHandler := handler.User{DB: db}
+
+	app := cli.Cli{UserHandler: userHandler}
+	app.AuthMenu()
+}
